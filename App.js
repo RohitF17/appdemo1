@@ -52,7 +52,8 @@ const App = () => {
   }
   const startRecording = async ()=>{
     try{
-    await Voice.start('en-US')
+    await Voice.start('en-US',{"RECOGNIZER_ENGINE":"GOOGLE",
+    "EXTRA_PARTIAL_RESULTS": true})
   
     }catch(error){
       console.log("error",error)
@@ -90,15 +91,13 @@ const App = () => {
         <Text style={{ alignSelf: "center", marginVertical: 24, fontWeight: "bold", fontSize: 25 }} >Interactive Testing</Text>
         <View style={styles.textinput}>
   
-          <TextInput value={result}placeholder="Text" style={{ flex: 1 }} onChangeText= {text=>setResult(text)} />
+          <TextInput value={result}placeholder="Text" style={{ flex: 1 }}  />
           
         </View>
         <TouchableOpacity onPress={startRecording} style={{alignSelf:"center",marginTop:24 }}>
             <Image source={{ uri: 'https://image.flaticon.com/icons/png/512/1082/1082810.png' }} style={{ width: 25, height: 25 }} />
           </TouchableOpacity>
-        <TouchableOpacity style ={{alignSelf:"center",marginTop:24, backgroundColor:"blue"}} onPress={stopRecording} >
-          <Text style={{color:"white"}}> Stop </Text>
-        </TouchableOpacity>
+      
   
   
   
